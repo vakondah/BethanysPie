@@ -1,0 +1,23 @@
+﻿<!--// CSC237
+// Aliaksandra Hrechka
+// 02/03/2020-->
+@model PiesListViewModel
+
+<h1>@Model.CurrentCategory</h1>
+<!--Looping through the pies-->
+@foreach (var pie in Model.Pies)
+{
+    <!--Bootstrap enabled code for each pie layout:-->
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@pie.ImageThumbnailUrl" alt="">
+            <div class="caption">
+                <h3 class="pull-right">@pie.Price.ToString("c")</h3>
+                <h3>
+                    <a>@pie.Name</a>
+                </h3>
+                <p>@pie.ShortDescription</p>
+            </div>
+        </div>
+    </div>
+}
