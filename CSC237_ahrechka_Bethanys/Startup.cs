@@ -34,6 +34,11 @@ namespace CSC237_ahrechka_Bethanys
             // Add services that will be used inside app :
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            // lambda to invoke to the user GetCart method in ShoppingCart.cs
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            services.AddHttpContextAccessor();
+            // support for sessions:
+            services.AddSession();
             // Support of MVC collection:
             services.AddControllersWithViews();
         }
@@ -49,7 +54,9 @@ namespace CSC237_ahrechka_Bethanys
             // more middleware components:
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();// before routing!!!
             app.UseRouting();
+           
 
             app.UseEndpoints(endpoints =>
             {

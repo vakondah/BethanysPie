@@ -16,6 +16,8 @@ namespace CSC237_ahrechka_Bethanys.Models
         // Db sets to manage pies and categories:
         public DbSet<Pie> Pies { get; set; }
         public DbSet<Category> Categories { get; set; }
+        // Shopping cart DbSet:
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
