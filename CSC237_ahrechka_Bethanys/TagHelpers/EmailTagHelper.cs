@@ -11,6 +11,7 @@ namespace CSC237_ahrechka_Bethanys.TagHelpers
         public string Address { get; set; }
         public string Content { get; set; }
 
+        // custom tag helper:
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "a";

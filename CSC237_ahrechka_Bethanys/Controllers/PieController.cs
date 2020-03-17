@@ -15,7 +15,7 @@ namespace CSC237_ahrechka_Bethanys.Controllers
 {
     public class PieController : Controller
     {
-        //private fields for pie and mock repositories:
+        //private fields for pie and category repositories:
         private readonly IPieRepository _pieRepository;
         private readonly ICategoryRepository _categoryRepository;
 
@@ -26,16 +26,6 @@ namespace CSC237_ahrechka_Bethanys.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        //// the action method of the controller:
-        //public ViewResult List()
-        //{
-        //    //Using ViewModels: PiesListViewModel instead of ViewBag
-        //    PiesListViewModel piesListViewModel = new PiesListViewModel();
-        //    piesListViewModel.Pies = _pieRepository.AllPies;
-
-        //    piesListViewModel.CurrentCategory = "Cheese cakes";
-        //    return View(piesListViewModel);
-        //}
         // Details action to navigate to details page
         public IActionResult Details(int id)
         {
