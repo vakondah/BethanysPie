@@ -34,6 +34,7 @@ namespace CSC237_ahrechka_Bethanys
             // Add services that will be used inside app :
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             // lambda to invoke to the user GetCart method in ShoppingCart.cs
             services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
             services.AddHttpContextAccessor();
@@ -56,6 +57,7 @@ namespace CSC237_ahrechka_Bethanys
             app.UseStaticFiles();
             app.UseSession();// before routing!!!
             app.UseRouting();
+            app.UseAuthentication();
            
 
             app.UseEndpoints(endpoints =>
