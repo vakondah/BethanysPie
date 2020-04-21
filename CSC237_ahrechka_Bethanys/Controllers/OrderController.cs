@@ -1,4 +1,8 @@
-﻿using CSC237_ahrechka_Bethanys.Models;
+﻿// CSC237
+// Aliaksandra Hrechka
+// 04/21/2020
+using CSC237_ahrechka_Bethanys.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CSC237_ahrechka_Bethanys.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;

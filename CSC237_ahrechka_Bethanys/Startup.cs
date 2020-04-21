@@ -1,6 +1,6 @@
 // CSC237
 // Aliaksandra Hrechka
-// 02/03/2020
+// 04/21/2020
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,7 @@ using CSC237_ahrechka_Bethanys.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +32,8 @@ namespace CSC237_ahrechka_Bethanys
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+
             // Add services that will be used inside app :
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -42,6 +45,8 @@ namespace CSC237_ahrechka_Bethanys
             services.AddSession();
             // Support of MVC collection:
             services.AddControllersWithViews();
+            // for scaffolded pages:
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +63,7 @@ namespace CSC237_ahrechka_Bethanys
             app.UseSession();// before routing!!!
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
            
 
             app.UseEndpoints(endpoints =>
@@ -65,6 +71,7 @@ namespace CSC237_ahrechka_Bethanys
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
